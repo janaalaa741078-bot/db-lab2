@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="header-bar">
+    <h2>Hi, {{ name }}</h2>
+    <a href="{{ url_for('logout') }}">Log out</a>
+</div>
+
+<h3>What needs to be done?</h3>
+<form method="POST">
+    <input type="hidden" name="action" value="add">
+    <input type="text" name="title" placeholder="Add a new task..." required>
+    <button type="submit">Add</button>
+</form>
+
+<ul class="todo-list">
+    {% for todo in todos %}
+        <li class="{% if todo.is_done %}done{% endif %}">
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="action" value="toggle">
+                <input type="hidden" name="todo_id" value="{{ todo.todo_id }}">
+                <input type="hidden" name="is_done" value="{{ todo.is_done }}">
+                <button type="submit" class="toggle-btn">{% if todo.is_done %}✓{% else %}O{% endif %}</button>
+            </form>
+
+            <form method="POST" style="display:inline;">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" name="todo_id" value="{{ todo.todo_id }}">
+                <input type="text" name="title" value="{{ todo.title }}" required>
+                <button type="submit">Save</button>
+            </form>
+
+            <form method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?');">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="todo_id" value="{{ todo.todo_id }}">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
+    {% else %}
+        <p>Your to-do list is empty. Add something above!</p>
+    {% endfor %}
+</ul>
+{% endblock %}
