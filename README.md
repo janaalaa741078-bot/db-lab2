@@ -48,4 +48,5 @@ A secure multi-user To-Do web application built with **Flask**, **MySQL**, and *
 **Answer:** Yes, absolutely. Even though the database stops NULL values, it will happily accept an empty string ("") or a bunch of spaces ("   "). We still need code-level validation to catch those empty inputs and give the user a proper warning.
 
 
-![alt text](<Screenshot 2026-10-12 000750.png>) ![alt text](<Screenshot 2026-10-12 000555-1.png>) ![alt text](<Screenshot 2026-10-12 000611-1.png>) ![alt text](<Screenshot 2026-10-12 000838-1.png>) ![alt text](<Screenshot 2026-10-12 000243-1.png>) 
+![alt text](img1.png.png) ![alt text](img2.png.png) ![alt text](img3.png.png) ![alt text](img4.png.png) ![alt text](img5.png.png)
+
