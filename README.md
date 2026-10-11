@@ -1,6 +1,6 @@
 # Database Lab 2 - Flask To-Do Application
 
-A secure multi-user To-Do web application built with **Flask**, **MySQL**, and **Bootstrap/CSS**. This project implements user authentication, session management, secure CRUD operations, and proper database constraints.
+A secure multi-user To-Do web application built with **Flask**, **MySQL**, and **Bootstrap/CSS**. This project implements user authentication, session management, secure CRUD operations, proper database constraints, and custom bonus features.
 
 ---
 
@@ -16,6 +16,14 @@ A secure multi-user To-Do web application built with **Flask**, **MySQL**, and *
 - **Data Isolation:** Logged-in users can only view, update, and delete their own personal tasks.
 - **Input Validation:** Prevents empty or whitespace-only task entries.
 - **Relational Integrity:** Foreign key constraints linking tasks securely to users.
+
+---
+
+## ⭐ Extra Bonus Features Implemented
+- **Live Pending Task Counter:** Dynamically calculates and displays the exact number of remaining open tasks in real-time.
+- **Task Filtering System:** Allows users to easily switch between viewing **All**, **Open**, or **Done** tasks using query parameters.
+- **Dark / Light Mode Toggle:** An interactive JavaScript-powered theme switcher for a customizable visual experience.
+- **Mobile Responsiveness:** Fully adaptive UI layout tested down to a 360px mobile viewport width.
 
 ---
 
@@ -38,3 +46,6 @@ A secure multi-user To-Do web application built with **Flask**, **MySQL**, and *
 
 **Q4: The name column is NOT NULL: did you still need your own check for an empty name?**
 **Answer:** Yes, absolutely. Even though the database stops NULL values, it will happily accept an empty string ("") or a bunch of spaces ("   "). We still need code-level validation to catch those empty inputs and give the user a proper warning.
+
+
+![alt text](<Screenshot 2026-10-12 000750.png>) ![alt text](<Screenshot 2026-10-12 000555-1.png>) ![alt text](<Screenshot 2026-10-12 000611-1.png>) ![alt text](<Screenshot 2026-10-12 000838-1.png>) ![alt text](<Screenshot 2026-10-12 000243-1.png>) 

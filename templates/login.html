@@ -1,20 +1,46 @@
-{% extends "layout.html" %}
-{% block content %}
-<h2>Log In</h2>
-<form method="POST" onsubmit="return validateLogin()">
-    <label>Email: <input type="email" name="email" id="email"></label><br>
-    <label>Password: <input type="password" name="password" id="password"></label><br>
-    <button type="submit">Log In</button>
-</form>
-<p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - To-Do App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="light-mode" id="body">
+    <div class="container auth-box">
+        <div class="top-bar" style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+            <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="toggle-btn">🌙 Dark Mode</button>
+        </div>
+        
+        <h2>Log In</h2>
 
-<script>
-function validateLogin() {
-    let email = document.getElementById("email").value.trim();
-    let password = document.getElementById("password").value;
-    if (!email) { alert("Email is required"); return false; }
-    if (!password) { alert("Password is required"); return false; }
-    return true;
-}
-</script>
-{% endblock %}
+        {% if error %}
+            <p style="color: red; background: rgba(255,0,0,0.1); padding: 8px; border-radius: 4px;">{{ error }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('login') }}" method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Log In</button>
+        </form>
+
+        <p style="margin-top: 15px; text-align: center;">Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.getElementById('body');
+            const btn = document.getElementById('dark-mode-toggle');
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Light Mode';
+            } else {
+                btn.textContent = '🌙 Dark Mode';
+            }
+        }
+    </script>
+</body>
+</html>

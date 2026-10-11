@@ -5,35 +5,48 @@
     <title>Register - To-Do App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
-<body>
-    <div class="container">
-        <h2>Register</h2>
-        
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-                {% for category, message in messages %}
-                    <div class="alert error">{{ message }}</div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
+<body class="light-mode" id="body">
+    <div class="container auth-box">
+        <div class="top-bar" style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+            <button id="dark-mode-toggle" onclick="toggleDarkMode()" class="toggle-btn">🌙 Dark Mode</button>
+        </div>
 
-        <form method="POST">
-            <label>Name:
-                <input type="text" name="name" required>
-            </label>
-            <label>Email:
-                <input type="email" name="email" required>
-            </label>
-            <label>Password:
-                <input type="password" name="password" required>
-            </label>
-            <label>Confirm Password:
-                <input type="password" name="confirm_password" required>
-            </label>
-            <button type="submit">Sign Up</button>
+        <h2>Register</h2>
+
+        {% if error %}
+            <p style="color: red; background: rgba(255,0,0,0.1); padding: 8px; border-radius: 4px;">{{ error }}</p>
+        {% endif %}
+
+        <form action="{{ url_for('register') }}" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit">Register</button>
         </form>
-        
-        <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+
+        <p style="margin-top: 15px; text-align: center;">Already have an account? <a href="{{ url_for('login') }}">Log In</a></p>
     </div>
+
+    <script>
+        function toggleDarkMode() {
+            const body = document.getElementById('body');
+            const btn = document.getElementById('dark-mode-toggle');
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                btn.textContent = '☀️ Light Mode';
+            } else {
+                btn.textContent = '🌙 Dark Mode';
+            }
+        }
+    </script>
 </body>
 </html>
